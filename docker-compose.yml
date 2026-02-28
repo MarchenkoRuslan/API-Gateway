@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  gateway:
+    image: coart/public-test
+    restart: always
+    environment:
+      - PORT=4000
+      - URL=https://001-joey-dual.symboltest.net:3001
+      - nemesisGenerationHash=7FCCD304802016BEBBCD342A332F91FF1F3BB5E902988B352697BE245F48E836
+      - EPOCH_ADJUSTMENT=1637848847
+      - MAX_FEE=136363
+      - NETWORK_CURRENCY_MOSAIC_ID_STRING=3A8416DB2D53B6C8
+      - NETWORK_CURRENCY_DIVISIBILITY=6
+      - ENCRYPTION_KEY=ABZX23EGWA23RIU234TG5Y67U89IKLOP
+    ports:
+      - "5555:4000"

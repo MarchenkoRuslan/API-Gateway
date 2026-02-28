@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coart-gateway
+  namespace: coart-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coart-gateway
+  template:
+    metadata:
+      labels:
+        app: coart-gateway
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: coart-gateway
+          image: superhow.azurecr.io/coart-gateway:dev-6e04cf85
+          env:
+          - name: PORT
+            value: "4000"
+          - name: URL
+            value: https://201-sai-dual.symboltest.net:3001
+          - name: nemesisGenerationHash
+            value: "49D6E1CE276A85B70EAFE52349AACCA389302E7A9754BCF1221E79494FC665A4"
+          - name: EPOCH_ADJUSTMENT
+            value: "1667250467"
+          - name: MAX_FEE
+            value: "136363"
+          - name: NETWORK_CURRENCY_MOSAIC_ID_STRING
+            value: "72C0212E67A08BCE"
+          - name: NETWORK_CURRENCY_DIVISIBILITY
+            value: "6"
+          ports:
+            - containerPort: 4000
+          resources:
+            # requests:
+            #   memory: "128Mi"
+            #   cpu: "100m"
+            # limits:
+            #   memory: "512Mi"
+            #   cpu: "500m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coart-gateway
+  namespace: coart-dev
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 4000
+    protocol: TCP
+    name: http
+  selector:
+    app: coart-gateway

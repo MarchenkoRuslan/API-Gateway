@@ -1,0 +1,11 @@
+{
+    "extends": [
+        "eslint:recommended"
+    ],
+    "ignorePatterns": ["config/**/*.js", "node_modules/**/*.ts"],
+    "rules": {
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "no-console": false
+    }
+}

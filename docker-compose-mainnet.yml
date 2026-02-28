@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  gateway:
+    # image: 063491056771.dkr.ecr.us-east-1.amazonaws.com/coart-api:v1
+    container_name: coart_mainnet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    pull_policy: always
+    environment:
+      - PORT=4000
+      - URL=https://xym303.allnodes.me:3001
+      #- URL=https://185.5.52.118:3001
+      #- URL=https://xym.jp1.node.leywapool.com:3001
+      - nemesisGenerationHash=57F7DA205008026C776CB6AED843393F04CD458E0AA2D9F1D5F31A402072B2D6                                                             
+      - EPOCH_ADJUSTMENT=1615853185
+      - MAX_FEE=97000
+      - NETWORK_CURRENCY_MOSAIC_ID_STRING=6BED913FA20223F8
+      - NETWORK_CURRENCY_DIVISIBILITY=6
+      - NETWORK_NEMESIS_PRIVATE_KEY=3BF5075F3FC71BABB8329B6467FDF010CD728C25D88EB7BBB834CECB25139C31
+      - NETWORK_MINIMUM_LOCK_AMOUNT=10000000
+      - NETWORK_IDENTIFIER=MAIN_NET
+      - ENCRYPTION_KEY=ABZX23EGWA23RIU234TG5Y67U89IKLOP
+    ports:
+      - "4000:4000"
