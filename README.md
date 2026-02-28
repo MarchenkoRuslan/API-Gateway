@@ -83,11 +83,11 @@ sudo apt install npm
 sudo reboot
 ```
 
-#### Node instalation >= v10.16.3
+#### Node installation (Node 20 recommended, as in Dockerfile)
 
 ```
-nvm install v10.16.3
-nvm use v10.16.3
+nvm install 20
+nvm use 20
 ```
 
 ### Git cloning
@@ -171,6 +171,17 @@ You can find all create multisigs in:
 ```
 /<project_folder>/src/files/multisigs
 ```
+
+### Health
+
+- `GET /health` — returns `{ "status": "ok" }`. Use for liveness/healthcheck (e.g. Railway).
+
+### Deploy to Railway
+
+1. Connect the API-Gateway repository to Railway.
+2. Use the provided Dockerfile or Nixpacks (Node.js).
+3. Set environment variables from `.env.example` (PORT is set by Railway).
+4. Healthcheck: `GET /health`.
 
 ### Endpoints
 

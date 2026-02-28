@@ -35,6 +35,10 @@ class App {
       })
     );
 
+    this.app.get("/health", (_req, res) => {
+      res.json({ status: "ok" });
+    });
+
     this.app.use("/api", routes);
   }
 }
